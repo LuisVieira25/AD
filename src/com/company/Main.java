@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Perimetro do retangulo: "+perimetroRetangulo(5,2));
         System.out.println("Volume do paralelepipedo: "+volumeParalelepipedo(7,5,3));
         System.out.println("Graus Celsius: "+convertFarenheit(32));
-        System.out.println("Segundos: "+hours(1,0,0));
+        System.out.println("Segundos: "+hours(1,60,30));
         int[] array = {10,5,4,3};
         System.out.println("Numero maximo: "+max(array));
         System.out.println("Numero minimo: "+min(array));
