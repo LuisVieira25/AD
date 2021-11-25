@@ -12,7 +12,7 @@ public class Main {
 
         Point p3 = new Point(3,1);
 
-        Triangle triangle = new Triangle(p1,p2,p3);
+        Triangle triangle = new Triangle(new Point(1,0),new Point(3,0),new Point(3,4));
         double base = triangle.comprimentoBase();
         double altura = triangle.alturaTriangulo();
         double areaTriangulo = triangle.areaTriangulo();
