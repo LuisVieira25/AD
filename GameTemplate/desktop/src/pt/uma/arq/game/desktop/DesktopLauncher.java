@@ -7,6 +7,9 @@ import pt.uma.arq.game.Game;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width;
+		config.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height;
+		config.fullscreen = true;
 		new LwjglApplication(new Game(), config);
 	}
 }

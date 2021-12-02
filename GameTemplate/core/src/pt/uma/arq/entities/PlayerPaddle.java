@@ -4,53 +4,54 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import pt.uma.arq.game.Animator;
 
 public class PlayerPaddle {
-
-    private Texture background;
-    private Sprite sprite;
-    SpriteBatch spriteBatch;
     private int x;
+    private int y;
     private int direcao;
     private int velocity;
+    private Animator animator;
+    private java.awt.Rectangle boundingBox;
+
+    int centerX = Gdx.graphics.getWidth() /2;
+
 
     public PlayerPaddle(SpriteBatch batch) {
-        this.spriteBatch = batch;
+        this.x = centerX;
+        this.y = 86;
         this.velocity = 10;
         this.direcao = 1;
-        background = new Texture("mario.png");
-        sprite = new Sprite(background);
-        sprite.setPosition(Gdx.graphics.getWidth()/2, 50);
+        animator = new Animator(batch, "full_paddle.png", 6,1);
     }
 
-    public void updateMore(){
-        /**
-        if(verify == true){
-            x-=10;
-            sprite.setPosition(x, 50);
-            if(x <= 0){
-                verify = false;
-            }
-        }else{
-            x+=10;
-            if(x >= Gdx.graphics.getWidth() - sprite.getWidth()){
-                verify = true;
-            }else{
-                sprite.setPosition(x, 50);
-            }
-        }**/
-        x = x + (velocity * direcao);
-        if(x >= Gdx.graphics.getWidth() - sprite.getWidth()){
-            direcao = -1;
+    public void updatePositionRight(){
+        if(x <= Gdx.graphics.getWidth() - animator.getWidth()){
+            x+= 10;
         }
-        if(x <= 0){
-            direcao = 1;
+        boundingBox.setLocation(x,y);
+    }
+
+    public void updatePositionLeft(){
+        if(x >= 2){
+            x -= 10;
         }
-        sprite.setPosition(x, 50);
+        boundingBox.setLocation(x,y);
+    }
+
+    public java.awt.Rectangle getBoundingBox(){
+        return boundingBox;
+    }
+
+    public void create(){
+        animator.create();
+        boundingBox = new java.awt.Rectangle(x,y, animator.getWidth(), animator.getHeight());
     }
 
     public void render() {
-        sprite.draw(spriteBatch);
+        animator.render(x,y);
     }
+
 
 }
